@@ -4,19 +4,19 @@ pub fn solve(input: &str) -> Answer {
     let answer = input
         .lines()
         .map(|line| {
-            let first = line
-                .chars()
-                .find(|char| char.is_ascii_digit())
-                .unwrap_or_default()
-                .to_digit(10)
-                .unwrap_or_default();
+            let char_matcher = |char: char| -> Option<u32> {
+                if char.is_ascii_digit() {
+                    return Some(char.to_digit(10).unwrap_or_default());
+                }
 
+                None
+            };
+
+            let first = line.chars().find_map(char_matcher).unwrap_or_default();
             let last = line
                 .chars()
                 .rev()
-                .find(|char| char.is_ascii_digit())
-                .unwrap_or_default()
-                .to_digit(10)
+                .find_map(char_matcher)
                 .unwrap_or_default();
 
             10 * first + last

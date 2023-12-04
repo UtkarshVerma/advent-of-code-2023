@@ -1,13 +1,14 @@
-pub mod answer;
-pub mod day;
-pub mod solver;
+mod answer;
+mod day;
+mod solver;
 
-pub mod day_1;
+mod day_1;
+mod day_2;
 
 use day::Day;
 
 fn main() {
-    let days = [Day::new(1)];
+    let days = (1..=2).map(Day::new).collect::<Vec<Day>>();
     for (i, day) in days.iter().enumerate() {
         println!(
             "Day {})\tPart one: {}\n\t\tPart two: {}",
