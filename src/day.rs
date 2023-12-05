@@ -1,7 +1,9 @@
 use crate::answer::Answer;
+
 use crate::day_1;
 use crate::day_2;
 use crate::day_3;
+use crate::day_4;
 
 pub struct Day {
     pub part_one: Answer,
@@ -16,6 +18,7 @@ impl Day {
             1 => day_1::SOLVERS,
             2 => day_2::SOLVERS,
             3 => day_3::SOLVERS,
+            4 => day_4::SOLVERS,
             _ => Default::default(),
         };
 
