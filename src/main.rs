@@ -22,7 +22,7 @@ macro_rules! load_days {
 use day::Day;
 
 // NOTE: This does not work for discontinuous chunks.
-load_days!(day_1, day_2, day_3, day_4, day_5);
+load_days!(day_1, day_2, day_3, day_4, day_5, day_6);
 
 fn main() {
     let days = SOLVERS
