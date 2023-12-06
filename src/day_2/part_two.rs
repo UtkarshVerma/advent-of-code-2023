@@ -8,7 +8,7 @@ struct BallCounts {
 }
 
 pub fn solve(input: &str) -> Answer {
-    let answer = input
+    let answer: u32 = input
         .lines()
         .map(|line| {
             let sets_string = line.split(": ").last().unwrap_or_default();

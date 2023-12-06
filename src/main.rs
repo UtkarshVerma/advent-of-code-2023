@@ -2,21 +2,40 @@ mod answer;
 mod day;
 mod solver;
 
-mod day_1;
-mod day_2;
-mod day_3;
-mod day_4;
+macro_rules! count_modules {
+    ($($module:ident),*) => {
+        <[()]>::len(&[$(count_modules!(subst $module)),*])
+    };
+    (subst $_:ident) => {()};
+}
+
+macro_rules! load_days {
+    ($($module:ident),*) => {
+        $(mod $module;)*
+
+        const SOLVERS: [solver::Solvers; count_modules!($($module),*)] = [
+            $($module::SOLVERS,)*
+        ];
+    };
+}
 
 use day::Day;
 
+// NOTE: This does not work for discontinuous chunks.
+load_days!(day_1, day_2, day_3, day_4, day_5);
+
 fn main() {
-    let days = (1..=4).map(Day::new).collect::<Vec<Day>>();
-    for (i, day) in days.iter().enumerate() {
-        println!(
-            "Day {})\tPart one: {}\n\t\tPart two: {}\n",
-            i + 1,
-            day.part_one,
-            day.part_two
-        );
-    }
+    let days = SOLVERS
+        .iter()
+        .enumerate()
+        .map(|(i, solvers)| Day::new((i + 1) as u8, solvers))
+        .collect::<Vec<Day>>();
+
+    println!(
+        "{}",
+        days.iter()
+            .map(|day| day.to_string())
+            .collect::<Vec<String>>()
+            .join("\n\n")
+    );
 }
