@@ -77,7 +77,7 @@ LR
 22Z = (22B, 22B)
 XXX = (XXX, XXX)";
 
-        assert_eq!(solve(input), Answer::Number(6));
+        assert_eq!(solve(input), Answer::LargeNumber(6));
     }
 
     #[test]

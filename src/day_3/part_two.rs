@@ -61,7 +61,7 @@ fn find_parts_in_window(line: &str, left: usize, right: usize) -> Vec<Part> {
 pub fn solve(input: &str) -> Answer {
     let schematic = input.lines().collect::<Vec<&str>>();
 
-    let _answer: u32 = schematic
+    let answer: u32 = schematic
         .iter()
         .enumerate()
         .map(|(i, line)| {
@@ -90,26 +90,23 @@ pub fn solve(input: &str) -> Answer {
                     parts.extend(find_parts_in_window(schematic[index], left, right));
                 }
 
-                if parts.len() != 2 {
-                    return 0;
+                if parts.len() == 2 {
+                    sum += parts.iter().product::<Part>()
                 }
-
-                sum += parts.iter().product::<Part>()
             }
 
             sum
         })
         .sum();
 
-    // Answer::Number(answer)
-    Answer::Unsolved
+    Answer::Number(answer)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    // TODO: #[test]
+    #[test]
     fn _test() {
         let input = "\
 467..114..
