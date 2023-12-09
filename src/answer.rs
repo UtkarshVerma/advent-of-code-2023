@@ -4,6 +4,7 @@ use std::fmt::{Display, Formatter, Result};
 pub enum Answer {
     Number(u32),
     LargeNumber(usize),
+    SignedNumber(i32),
 
     Unsolved,
 }
@@ -13,6 +14,7 @@ impl Display for Answer {
         match self {
             Answer::Number(value) => write!(f, "{}", value),
             Answer::LargeNumber(value) => write!(f, "{}", value),
+            Answer::SignedNumber(value) => write!(f, "{}", value),
             Answer::Unsolved => write!(f, "Unsolved"),
         }
     }
